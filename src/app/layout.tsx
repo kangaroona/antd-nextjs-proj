@@ -14,11 +14,13 @@ import {
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Layout, Menu, theme } from "antd";
+import { navItem } from "../types/nav";
 // import "@/theme/globals.scss";
 const { Header, Content, Footer, Sider } = Layout;
 import Nav from "../componet/nav";
 import StyledComponentsRegistry from "./StyledComponentsRegistry";
 import Sidebar from "../componet/sidebar";
+import { StringDecoder } from "string_decoder";
 // import { useRouter } from "next/navigation";
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -58,6 +60,20 @@ export default function RootLayout({
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const sidebarClick = (curV) => {
+    console.log("curV", curV);
+    let curNavArr: navItem[] = [];
+    if (curV.length === 0) return;
+    const parentLink: string = curV[0]?.children ? "label" : "";
+    console.log(
+      "🚀 ~ file: layout.tsx:68 ~ sidebarClick ~ curV[0].children:",
+      curV[0]?.children
+    );
+    curNavArr.push({ name: curV[0]?.label, link: parentLink });
+    setNav(curNavArr);
+  };
+  const [collapsed, setCollapsed] = useState(false);
+  const [navArr, setNav] = useState([] as navItem[]);
   // const router = useRouter();
   return (
     <html lang="en">
@@ -67,12 +83,18 @@ export default function RootLayout({
       <body>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: "100vh" }}>
+            <Sidebar
+              iscollapsed={collapsed}
+              selectedKeys="1"
+              clickCallback={sidebarClick}
+            />
             <Layout>
               <Header style={{ padding: 0, background: colorBgContainer }}>
                 welcome
               </Header>
+
               <Content style={{ margin: "0 16px" }}>
-                <Nav nav1="xx" />
+                <Nav nav1={navArr} />
                 <div
                   style={{
                     padding: 24,

@@ -11,16 +11,14 @@ import {
 } from "@ant-design/icons";
 interface IsidebarProp {
   iscollapsed: boolean;
-  defaultSelectedKeys: string;
+  selectedKeys: string;
   clickCallback: Function;
 }
 type MenuItem = Required<MenuProps>["items"][number];
 
 export const Sidebar: React.FC<IsidebarProp> = (sidebarProp) => {
   const [collapsed, setCollapsed] = useState(sidebarProp.iscollapsed);
-  const [selectedKeys, setSelectedKeys] = useState(
-    sidebarProp.defaultSelectedKeys
-  );
+  const [selectedKeys, setSelectedKeys] = useState(sidebarProp.selectedKeys);
   const [items, setItems] = useState([] as MenuItem[]);
   function getItem(
     label: React.ReactNode,
@@ -51,10 +49,18 @@ export const Sidebar: React.FC<IsidebarProp> = (sidebarProp) => {
       getItem("Files", "9", <CloudOutlined />),
     ];
     setItems(itemList);
+    sidebarProp.clickCallback([itemList[0]]);
   }, []);
   const clickHandle: MenuProps["onClick"] = (e) => {
     setSelectedKeys(e.key);
-    sidebarProp.clickCallback(e.key);
+    let curSearchKey: string = e.key;
+    if (e.keyPath.length > 1) {
+      curSearchKey = e.keyPath[e.keyPath.length - 1];
+    }
+    // console.log(e);
+    const curItem = items.filter((v) => v?.key === curSearchKey);
+    sidebarProp.clickCallback(curItem);
+    console.log(curItem);
   };
   return (
     <Sider
