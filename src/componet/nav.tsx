@@ -8,13 +8,9 @@ interface IProps {
 }
 const Nav: React.FC<IProps> = (prop) => {
   const { nav1 } = prop;
-  console.log("nav1: ", nav1);
   let items: ItemType[] = [
     {
       title: "Home",
-    },
-    {
-      title: <a href="">xxx</a>,
     },
   ];
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Menu } from "antd";
 import type { MenuProps } from "antd";
+import { useRouter } from "next/navigation";
 const { Sider } = Layout;
 import {
   AppstoreOutlined,
@@ -17,6 +18,7 @@ interface IsidebarProp {
 type MenuItem = Required<MenuProps>["items"][number];
 
 export const Sidebar: React.FC<IsidebarProp> = (sidebarProp) => {
+  const router = useRouter();
   const [collapsed, setCollapsed] = useState(sidebarProp.iscollapsed);
   const [selectedKeys, setSelectedKeys] = useState(sidebarProp.selectedKeys);
   const [items, setItems] = useState([] as MenuItem[]);
@@ -35,12 +37,12 @@ export const Sidebar: React.FC<IsidebarProp> = (sidebarProp) => {
   }
   useEffect(() => {
     const itemList: MenuItem[] = [
-      getItem("Option 1", "1", <AppstoreOutlined />),
-      getItem("Option 2", "2", <BarChartOutlined />),
+      getItem("Option 1", "detail", <AppstoreOutlined />),
+      getItem("Option 2", "user", <BarChartOutlined />),
       getItem("User", "sub1", <UserOutlined />, [
         getItem("Tom", "3"),
         getItem("Bill", "4"),
-        getItem("Alex", "5"),
+        getItem("Alex", "5", "user"),
       ]),
       getItem("Team", "sub2", <TeamOutlined />, [
         getItem("Team 1", "6"),
@@ -49,7 +51,7 @@ export const Sidebar: React.FC<IsidebarProp> = (sidebarProp) => {
       getItem("Files", "9", <CloudOutlined />),
     ];
     setItems(itemList);
-    sidebarProp.clickCallback([itemList[0]]);
+    // sidebarProp.clickCallback([itemList[0]]);
   }, []);
   const clickHandle: MenuProps["onClick"] = (e) => {
     setSelectedKeys(e.key);
@@ -60,7 +62,7 @@ export const Sidebar: React.FC<IsidebarProp> = (sidebarProp) => {
     // console.log(e);
     const curItem = items.filter((v) => v?.key === curSearchKey);
     sidebarProp.clickCallback(curItem);
-    console.log(curItem);
+    router.push(`/${curItem[0]?.key}`);
   };
   return (
     <Sider
