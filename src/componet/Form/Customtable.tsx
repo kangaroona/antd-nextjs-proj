@@ -80,9 +80,16 @@ const Customtable: React.FC = () => {
       },
     ],
   };
-
+  const onChange = (page) => {
+    console.log(page);
+  };
   return (
-    <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+    <Table
+      rowSelection={rowSelection}
+      pagination={{ onChange: onChange, showQuickJumper: true }}
+      columns={columns}
+      dataSource={data}
+    />
   );
 };
 

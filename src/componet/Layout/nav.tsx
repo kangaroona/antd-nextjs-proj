@@ -1,7 +1,7 @@
 import React from "react";
 import { Breadcrumb } from "antd";
 import { ItemType } from "antd/es/breadcrumb/Breadcrumb";
-import { navItem } from "../types/nav";
+import { navItem } from "../../types/nav";
 // import { Interface } from "readline";
 interface IProps {
   nav1: navItem[];

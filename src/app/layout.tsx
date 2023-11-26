@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import type { MenuProps } from "antd";
-import { Layout, Menu, theme } from "antd";
+import { Layout, theme } from "antd";
 import { navItem } from "../types/nav";
 // import "@/theme/globals.scss";
-const { Header, Content, Footer, Sider } = Layout;
-import Nav from "../componet/nav";
+const { Content } = Layout;
+import Nav from "../componet/Layout/nav";
 import StyledComponentsRegistry from "./StyledComponentsRegistry";
-import Sidebar from "../componet/sidebar";
-
+import Sidebar from "../componet/Layout/sidebar";
+import { CustomerFoot } from "../componet/Layout/CustomerFoot";
+import CustomerHeader from "../componet/Layout/Header";
 export default function RootLayout({
   children,
 }: {
@@ -46,10 +46,7 @@ export default function RootLayout({
               clickCallback={sidebarClick}
             />
             <Layout>
-              <Header style={{ padding: 0, background: colorBgContainer }}>
-                welcome
-              </Header>
-
+              <CustomerHeader bg={colorBgContainer} />
               <Content style={{ margin: "0 16px" }}>
                 <Nav nav1={navArr} />
                 <div
@@ -59,13 +56,10 @@ export default function RootLayout({
                     background: colorBgContainer,
                   }}
                 >
-                  Bill is a cat.
                   {children}
                 </div>
               </Content>
-              <Footer style={{ textAlign: "center" }}>
-                Ant Design ©2023 Created by Ant UED
-              </Footer>
+              <CustomerFoot text=" Ant Design ©2023 Created by Ant" />
             </Layout>
           </Layout>
         </StyledComponentsRegistry>
