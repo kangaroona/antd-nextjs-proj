@@ -66,7 +66,7 @@ const Customtable: React.FC = () => {
       },
       {
         key: "even",
-        text: "Select Even Row",
+        text: "Select Row",
         onSelect: (changeableRowKeys) => {
           let newSelectedRowKeys = [] as React.Key[];
           newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
