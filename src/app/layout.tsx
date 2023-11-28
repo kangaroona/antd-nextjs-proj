@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Layout, theme } from "antd";
 import { navItem } from "../types/nav";
-// import "@/theme/globals.scss";
 const { Content } = Layout;
 import Nav from "../componet/Layout/nav";
 import StyledComponentsRegistry from "./StyledComponentsRegistry";
@@ -22,10 +21,6 @@ export default function RootLayout({
     let curNavArr: navItem[] = [];
     if (curV.length === 0) return;
     const parentLink: string = curV[0]?.children ? "label" : "";
-    console.log(
-      "🚀 ~ file: layout.tsx:68 ~ sidebarClick ~ curV[0].children:",
-      curV[0]?.children
-    );
     curNavArr.push({ name: curV[0]?.label, link: parentLink });
     setNav(curNavArr);
   };
