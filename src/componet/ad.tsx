@@ -2,6 +2,7 @@
 Ad compnonet
 * @author: Nina
 from antd-ad
+* @author: Nina
 */
 import React from "react";
 import { Button, Card, Flex, Typography } from "antd";
