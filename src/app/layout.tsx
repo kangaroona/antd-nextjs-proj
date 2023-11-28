@@ -17,7 +17,6 @@ export default function RootLayout({
     token: { colorBgContainer },
   } = theme.useToken();
   const sidebarClick = (curV) => {
-    console.log("curV", curV);
     let curNavArr: navItem[] = [];
     if (curV.length === 0) return;
     const parentLink: string = curV[0]?.children ? "label" : "";
