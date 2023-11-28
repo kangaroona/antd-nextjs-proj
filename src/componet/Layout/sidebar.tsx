@@ -4,13 +4,7 @@ import type { MenuProps } from "antd";
 import { useRouter } from "next/navigation";
 import { useMenu } from "../../services/menu";
 const { Sider } = Layout;
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { AppstoreOutlined } from "@ant-design/icons";
 interface IsidebarProp {
   iscollapsed: boolean;
   selectedKeys: string;
