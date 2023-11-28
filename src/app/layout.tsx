@@ -26,7 +26,6 @@ export default function RootLayout({
   };
   const [collapsed, setCollapsed] = useState(false);
   const [navArr, setNav] = useState([] as navItem[]);
-  // const router = useRouter();
   return (
     <html lang="en">
       <head>
