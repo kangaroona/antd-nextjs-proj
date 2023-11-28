@@ -52,7 +52,7 @@ export default function RootLayout({
                   {children}
                 </div>
               </Content>
-              <CustomerFoot text=" Ant Design ©2023 Created by Ant" />
+              <CustomerFoot text=" Ant ©2023 Created by Ant" />
             </Layout>
           </Layout>
         </StyledComponentsRegistry>
