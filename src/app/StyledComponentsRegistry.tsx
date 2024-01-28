@@ -6,7 +6,7 @@ import { StyleProvider, createCache, extractStyle } from "@ant-design/cssinjs";
 import zhCN from "antd/locale/zh_CN";
 import { ConfigProvider } from "antd";
 import type Entity from "@ant-design/cssinjs/es/Cache";
-
+import ThemeProvider from "./theme-provider";
 const StyledComponentsRegistry = ({
   children,
 }: {
@@ -21,7 +21,9 @@ const StyledComponentsRegistry = ({
   ));
   return (
     <StyleProvider cache={cache}>
-      <ConfigProvider locale={zhCN}>{children}</ConfigProvider>
+      <ConfigProvider locale={zhCN}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </ConfigProvider>
     </StyleProvider>
   );
 };
