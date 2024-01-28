@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Layout, theme } from "antd";
 import { navItem } from "../types/nav";
 const { Content } = Layout;
@@ -16,15 +16,15 @@ export default function RootLayout({
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const sidebarClick = (curV) => {
-    let curNavArr: navItem[] = [];
-    if (curV.length === 0) return;
-    const parentLink: string = curV[0]?.children ? "label" : "";
-    curNavArr.push({ name: curV[0]?.label, link: parentLink });
-    setNav(curNavArr);
-  };
-  const [collapsed, setCollapsed] = useState(false);
-  const [navArr, setNav] = useState([] as navItem[]);
+  // const sidebarClick = (curV) => {
+  //   let curNavArr: navItem[] = [];
+  //   if (curV.length === 0) return;
+  //   const parentLink: string = curV[0]?.children ? "label" : "";
+  //   curNavArr.push({ name: curV[0]?.label, link: parentLink });
+  //   setNav(curNavArr);
+  // };
+  // const [collapsed, setCollapsed] = useState(false);
+  // const [navArr, setNav] = useState([] as navItem[]);
   return (
     <html lang="en">
       <head>
@@ -33,15 +33,11 @@ export default function RootLayout({
       <body>
         <StyledComponentsRegistry>
           <Layout style={{ minHeight: "100vh" }}>
-            <Sidebar
-              iscollapsed={collapsed}
-              selectedKeys=""
-              clickCallback={sidebarClick}
-            />
+            <Sidebar iscollapsed={false} selectedKeys="" />
             <Layout>
               <CustomerHeader bg={colorBgContainer} />
               <Content style={{ margin: "0 16px" }}>
-                <Nav nav1={navArr} />
+                <Nav nav1={[]} />
                 <div
                   style={{
                     padding: 24,

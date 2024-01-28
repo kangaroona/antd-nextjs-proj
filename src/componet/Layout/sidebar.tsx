@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { Layout, Menu } from "antd";
 import type { MenuProps } from "antd";
@@ -8,7 +9,7 @@ import { AppstoreOutlined } from "@ant-design/icons";
 interface IsidebarProp {
   iscollapsed: boolean;
   selectedKeys: string;
-  clickCallback: Function;
+  // clickCallback: Function;
 }
 type MenuItem = Required<MenuProps>["items"][number];
 export const Sidebar: React.FC<IsidebarProp> = (sidebarProp) => {
@@ -69,7 +70,7 @@ export const Sidebar: React.FC<IsidebarProp> = (sidebarProp) => {
     }
     // console.log(e);
     const curItem = itemList.filter((v) => v?.key === curSearchKey);
-    sidebarProp.clickCallback(curItem);
+    // sidebarProp.clickCallback(curItem);
     router.push(`/${curItem[0]?.key}`);
   };
   return (

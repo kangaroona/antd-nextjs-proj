@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Breadcrumb } from "antd";
 import { ItemType } from "antd/es/breadcrumb/Breadcrumb";
